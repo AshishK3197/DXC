@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style> 
+
+</head>
+<body>
+
+<!-- <table >
+  <tr>
+    <th>Month</th>
+    <th colspan='2'>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td colspan='2'>$100</td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td>$80</td>
+  </tr>
+  <tr>
+    <td colspan="2">Sum: $180</td>
+  </tr>
+</table>
+ <table>
+  <tr>
+    <th>Month</th>
+    <th colspan='2'>Savings</th>
+  </tr>
+  <tr>
+    <td>January</td>
+    <td colspan='2'>$100</td>
+  </tr>
+  <tr>
+    <td>February</td>
+    <td rowspan="2">$80</td>
+  </tr>
+  <tr>
+    <td>Sum: $180</td>
+  </tr>
+</table>  -->
+<br> 
+<br>
+<table id='pop'>
+	<tbody>  
+		<tr>
+			<th>RollNo</th>
+			<th> StudentName </th>
+			<th>collegeName</th>
+			<th> Marks</th>
+			<th>Sem</th>
+		</tr>
+	</tbody>
+</table>
+ 
+</body> 
+<script type="text/javascript"> 
+	function add_row() {
+		// body... 
+		
+	
+	table_data=[['1','virat','IIT','100','8'],['2','rohit','IIt','100','6'],['3','shikhar','JNU', '90', '6']]; 
+	for(i=0;i<table_data.length;i++){ 
+		tab=document.getElementsByTagName('tbody').item(0);
+
+		tr=document.createElement('tr'); 
+		for(j=0;j<table_data[i].length;j++){
+			td=document.createElement('td'); 
+			text1=document.createTextNode(table_data[i][j]);
+			td.appendChild(text1); 
+			tr.appendChild(td);
+		} 
+		tab.appendChild(tr);
+	} 
+}  
+!(
+	function() {
+	// body... 
+	for(i=1;i<=10;i++){
+		console.log(2*i);
+	}
+})();
+add_row();
+</script> 
+</html>

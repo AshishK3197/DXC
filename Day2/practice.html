@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		function onlycaps(w){
+			if (!(w.which>=65 && w.which<=90))
+			{
+				w.preventDefault();
+			}
+		}
+		function Conacatenate(){
+			var x = document.getElementById("text1").value
+			var y = document.getElementById("text2").value
+			alert(x+y);
+		}
+		
+	</script>
+</head>
+<body>
+<input type="text" name="" onkeypress="onlycaps(event)"><br><br>
+<input type="text" name="" id="text1"><br>
+<input type="text" name="" id="text2"><br>
+
+<input type="submit" name="" value="Click me!" onclick="Conacatenate()">
+</body>
+</html>

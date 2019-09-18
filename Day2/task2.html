@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+	.auto {cursor:auto;}
+	</style>
+	<script type="text/javascript">
+		function CapsOnly(e){
+		if (!(e.which>=65 && e.which<=90))
+		{
+			e.preventDefault();
+		}
+	}
+		function Alpha(f){
+			if(!(f.which>=97 && f.which<=122))
+			{
+				f.preventDefault();
+			}
+		}
+		function Concat(){
+			var x=document.getElementById("Concat1").value
+			var y=document.getElementById("Cocat2").value
+			alert(x+y);
+		}
+		function CurrenCurr(){
+			var dollars = document.getElementById("Convert1").value
+			var rupees = dollars * 70;
+			alert(rupees);
+		}
+		function printMousePos(e) {
+    	var cursorX= e.clientX;
+    	var cursorY= e.clientY;
+    	document.getElementById('curVal').innerHTML = "The coordinates are: " +cursorX + " "+cursorY;
+    }
+    	function newWin()
+    	{
+    		window.open("https://www.youtube.com/watch?v=IC7kXsnYCWk","_blank")
+    	}
+	</script>
+	
+</head>
+<body onclick="printMousePos(event)"> 
+	<p>Cursor will change over this text:-</p>
+	<p class="auto">auto</p>
+	<input type="text" onkeypress="CapsOnly(event)" name="" id="txtnum"><br>
+	<input type="text" onkeypress="Alpha(event)" name="" id="txtnum1"><br>
+	<img src="C:/Users/akumar2075/Desktop/download-suits-season-7.jpg"><br>
+	<input type="submit"><br><br>
+
+	FirstName:-<input type="text" name="" id="Concat1"><br>
+	Lastname:-<input type="text" name="" id="Cocat2"><br>
+	<input type="submit" value="Submit again for popup" onclick="Concat()">	<br><br>
+	Enter in Dollar:-<input type="text" name="" id="Convert1"><br>
+	<input type="submit" name="" value="Submit for conversion" onclick="CurrenCurr()"><br><br>
+	<p id="curVal"></p>
+	<button onclick="newWin()">Click to watch tom and jerry</button>
+</body>
+</html>

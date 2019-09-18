@@ -1,0 +1,36 @@
+
+
+<html>
+
+<head>
+
+<script type="text/javascript">
+
+function printtable(){
+
+var num=Number(document.getElementById('txtNumber').value);
+
+for(var i=1; i<=10; i++){
+
+var print= document.getElementById('pPrint');
+
+print.innerHTML += (num*i) + "<br/>"
+
+}
+
+}
+
+
+</script>
+
+</head>
+
+<p><input type="text" id="txtNumber" ></p>
+
+<p><input type="button" value="Print Table." onclick=printtable()>
+
+<p id="pPrint"></p>
+
+</body>
+
+</html>
