@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Closers</title>
+	<script type="text/javascript">
+		count = (function counter()
+		{
+			var countlike = 0;
+
+			return function(){
+				return ++countlike;
+			}
+		})();
+		
+	</script>
+</head>
+<body>
+<input type="submit" name="" onclick="alert(count())">
+</body>
+</html>

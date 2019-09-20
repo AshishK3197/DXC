@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<script>
+	$(document).ready(function(){
+	$("#btn2").click(function(){
+	$("#ol").append("<li>"+$("#get1").val()+"</li>");
+});
+});
+</script>
+
+</head>
+<body>
+<ol id="ol">
+	<li>cat</li>
+	<li>dog</li>
+	<li>mouse</li>
+</ol>
+<input type="text" name="" id="get1">
+<input type="submit" name="" id="btn2">
+</body>
+</html>

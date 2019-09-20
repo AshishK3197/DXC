@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to LINKSYS</title>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link href="./CustomStyles.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <style>
+        img{
+            min-height:350px;
+        }
+    </style>
+    <script type="text/javascript">
+    	function validate(){
+		var x = document.forms["myForm"]["pass"].value;
+		var y = document.forms["myForm"]["pass1"].value;
+		if(x!=y){
+    			alert("password does not match");
+    		}
+    	}
+    	function dobValidate() {
+
+var date= new Date();
+
+var year=date.getFullYear();
+var month=date.getMonth()+1;
+var dd=date.getDate();
+
+if(month<10)
+{
+month='0'+month;
+}
+if(dd<10)
+{
+dd=0+""+dd;
+}
+document.getElementById('dob').max=(year-18)+"-"+month+"-"+dd;
+
+}
+    </script>
+</head>
+<body>
+	    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+            </div>
+
+	</div>
+	<p style="text-align: center; color: red;"> Welcome To My world</p>
+            <div class="col-lg-12 col-md-12 col-sm-1" align="center">
+                <a href="~/Images/img2.jpeg" class="img-thumbnail">
+                    
+                    <img src="Images/img2.jpeg" class="img-responsive  img-rounded" />
+                </a>
+                <br><br>
+
+                <form name="myForm">
+        <fieldset style="text-align: center; margin-left: 350px; margin-right: 350px;">
+        	<legend style="text-align: center;">LOGIN FOR REGISTRATION</legend><br>
+        	<input type="password" name="pass" placeholder="Password" ><br><br>
+        	<input type="password" name="pass1" placeholder="Confirm Password"><br><br>
+        	
+        	<input type="date" id="dob" onclick="dobValidate()" placeholder="Date Of Birth"><br>
+        	<br>
+        	<input type="submit" name="" value="Submit" onclick="validate()">
+        </form></fieldset>
+
+
+
+</body>
+</html>
