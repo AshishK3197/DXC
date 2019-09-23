@@ -1,0 +1,195 @@
+
+SQL*Plus: Release 18.0.0.0.0 - Production on Mon Sep 23 15:09:22 2019
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+Enter user-name: dxc
+Enter password:
+Last Successful login time: Mon Sep 23 2019 09:29:22 +05:30
+
+Connected to:
+Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+
+SQL> create table timetable
+  2  (day char(3),
+  3      sess int,
+  4      fac varchar(20),
+  5      room int,
+  6      sem int,
+  7      sub varchar(20),
+  8      unique(day, sess, room),
+  9      unique(day, sess, fac),
+ 10      unique(day, sess, sem)
+ 11  );
+
+Table created.
+
+SQL> insert into timetable('mon','1','ram','1','1','java');
+insert into timetable('mon','1','ram','1','1','java')
+                      *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> insert into timetable values('mon','1','ram','1','1','java');
+
+1 row created.
+
+SQL> insert into timetable values('mon','1','ram','2','1','java');
+insert into timetable values('mon','1','ram','2','1','java')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXC.SYS_C007445) violated
+
+
+SQL> insert into timetable values('mon','1','ram','1','1','python');
+insert into timetable values('mon','1','ram','1','1','python')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXC.SYS_C007444) violated
+
+
+SQL> insert into timetable values('mon','1','raju','1','1','java');
+insert into timetable values('mon','1','raju','1','1','java')
+*
+ERROR at line 1:
+ORA-00001: unique constraint (DXC.SYS_C007444) violated
+
+
+SQL> create sequence seqmynum
+  2  start 100
+  3  decrement by 1;
+start 100
+      *
+ERROR at line 2:
+ORA-00970: missing WITH keyword
+
+
+SQL> create sequence seqmynum
+  2  start with 100
+  3  decrement by 1;
+decrement by 1
+*
+ERROR at line 3:
+ORA-00933: SQL command not properly ended
+
+
+SQL> create sequence seqmynum
+  2  start with 100
+  3  increment by -1;
+create sequence seqmynum
+*
+ERROR at line 1:
+ORA-04008: START WITH cannot be more than MAXVALUE
+
+
+SQL> create sequence seqmynum
+  2  start with 10
+  3  increment by -1;
+create sequence seqmynum
+*
+ERROR at line 1:
+ORA-04008: START WITH cannot be more than MAXVALUE
+
+
+SQL> create sequence seqmynum
+  2  start with 10
+  3  increment by -1
+  4  MAXVALUE 100;
+
+Sequence created.
+
+SQL> create table demseq
+  2  (sl no int,name varchar(20));
+(sl no int,name varchar(20))
+       *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table demseq
+  2  (slno int,name varchar(20));
+
+Table created.
+
+SQL> insert into demoseq values(seqmynum.nextval,'abc');
+insert into demoseq values(seqmynum.nextval,'abc')
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> insert into demseq values(seqmynum.nextval,'abc');
+
+1 row created.
+
+SQL> select seqmynum.nextval from dual;
+
+   NEXTVAL
+----------
+         9
+
+SQL> select * from demseq;
+
+      SLNO NAME
+---------- --------------------
+        10 abc
+
+SQL> insert into demseq values(seqmynum.nextval,'xyz');
+
+1 row created.
+
+SQL> select * from demseq;
+
+      SLNO NAME
+---------- --------------------
+        10 abc
+         8 xyz
+
+SQL> update demsql set slno=seqmynum.nextval;
+update demsql set slno=seqmynum.nextval
+       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> update demseq set slno=seqmynum.nextval;
+
+2 rows updated.
+
+SQL> select * from dual;
+
+D
+-
+X
+
+SQL> select seqmynum.nextval from dual;
+
+   NEXTVAL
+----------
+         5
+
+SQL> select* from demseq;
+
+      SLNO NAME
+---------- --------------------
+         7 abc
+         6 xyz
+
+SQL> delete from demosql where slno=seqmynum.nextval;
+delete from demosql where slno=seqmynum.nextval
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> delete from demseq where slno=seqmynum.nextval;
+delete from demseq where slno=seqmynum.nextval
+                                       *
+ERROR at line 1:
+ORA-02287: sequence number not allowed here
+
+
+SQL>

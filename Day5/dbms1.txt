@@ -1,0 +1,143 @@
+conn /as sysdba
+
+conn system
+password
+
+conn sysdba
+
+create user dxc identofoed by pass;
+
+alter session set "_oracle_script"=true
+
+select user fom dual;
+
+conn sysdba
+
+grant create session to dxc
+
+conn dxc
+
+grant dba to dxc
+
+create schema  authorization dxc;
+
+alter user hr  account unlock;
+
+alter user hr identified by hr account unlock;
+
+->BANK
+cobal -> 100Crs
+WEB SERVICES  --> JSON
+JAVA
+
+create table college(
+clgId int,
+clgName varchar(10),
+test char(5)
+)
+
+char(10) , varchar(10)
+char -> HELLO_ _ _ _ _ (10)
+varchar2->HELLO   (5)
+insert  into college values(1,'aa','aa');
+select * from college;
+, varchar2
+file -> new ->connection
+myconn
+dxc
+  pass
+
+select length(clgname) , length(test)
+from college;
+
+varchar2-> 2byte
+
+where
+
+CAPS
+
+
+  hello HELLO      HELLO         HeLlo
+
+
+drop table college;
+
+create table college
+(
+clgId int primary key,
+clgName varchar(20)
+)
+
+insert into college values('','IIT')
+
+insert into college values(null,'IIT')
+
+insert into college(clgid) values(5);
+
+
+create table college1
+(
+clgId int,
+clgName varchar(20),
+constraint pk primary key(clgid)
+)
+
+select * from college
+where clgName='IIT';
+
+
+select * from college1
+where clgName='IIT';
+
+
+alter table college1
+drop constraint pk;
+
+1
+2
+4 -> dis pk
+4
+5 ->enab
+
+desc user_constraints;
+
+select constraint_name
+from user_constraints
+where table_name='college';
+
+
+select constraint_name
+from user_constraints
+where table_name='COLLEGE';
+
+alter table college
+drop constraint SYS_C007746;
+
+college
+cid     cname
+1         IIT
+2         IIM
+
+student
+rno sname clgid
+1       aaa         null
+2       aaa         2
+3       aaa         2
+
+
+alter table college
+add constraint  pk primary key(clgid);
+
+create table student
+(
+rNo int,
+clgCode int references college(clgid),
+sname varchar(20)
+)
+
+create table student1
+(
+rNo int,
+clgCode varchar(20) references college(clgid),
+sname varchar(20)
+)

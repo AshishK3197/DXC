@@ -1,0 +1,239 @@
+
+SQL*Plus: Release 18.0.0.0.0 - Production on Mon Sep 23 09:28:31 2019
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+Enter user-name: tiger
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Enter user-name: dxc
+Enter password:
+Last Successful login time: Fri Sep 20 2019 10:54:21 +05:30
+
+Connected to:
+Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+
+SQL> select * from tab;
+
+TNAME
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID
+------------- ----------
+COLLEGE
+TABLE
+
+
+SQL> select user from dual;
+
+USER
+--------------------------------------------------------------------------------
+DXC
+
+SQL> desc table;
+ERROR:
+ORA-00931: missing identifier
+
+
+SQL> select * from student;
+select * from student
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from college;
+
+     CLGID CLGNAME    TEST
+---------- ---------- -----
+       223 prachir    56
+       223 prachir1   56
+         1 aa         aa
+       242 SRMIST     100
+       243 ANTRA      97
+
+SQL> select 'hello' from dual;
+
+'HELL
+-----
+hello
+
+SQL> create table dept (deptid int(5),deptName varchar(20), constraint pk primary key (deptid));
+create table dept (deptid int(5),deptName varchar(20), constraint pk primary key (deptid))
+                             *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table dept (deptid int,deptName varchar(20), constraint pk primary key (deptid));
+
+Table created.
+
+SQL> insert into dept values('1','Sales');
+
+1 row created.
+
+SQL> insert into dept values('2','Marketing');
+
+1 row created.
+
+SQL> create table emp(empid int,empName varchar(20),age int check(age between 18 and 50));
+
+Table created.
+
+SQL> alter table emp (add constraint fk foreign key(deptid));
+alter table emp (add constraint fk foreign key(deptid))
+                *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table emp deptid int references dept(deptid);
+alter table emp deptid int references dept(deptid)
+                *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table emp(deptId int, deptId references dept(deptid));
+alter table emp(deptId int, deptId references dept(deptid))
+               *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table emp add column(deptId int references dept(deptid));
+alter table emp add column(deptId int references dept(deptid))
+                    *
+ERROR at line 1:
+ORA-00904: : invalid identifier
+
+
+SQL> alter table emp add (deptId int references dept(deptid));
+
+Table altered.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                              NUMBER(38)
+ EMPNAME                                            VARCHAR2(20)
+ AGE                                                NUMBER(38)
+ DEPTID                                             NUMBER(38)
+
+SQL> desc dept;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTID                                    NOT NULL NUMBER(38)
+ DEPTNAME                                           VARCHAR2(20)
+
+SQL> select * from dept;
+
+    DEPTID DEPTNAME
+---------- --------------------
+         1 Sales
+         2 Marketing
+
+SQL> create table empbackup(empid int,empName varchar(20),age int check(age between 18 and 50),dept varchar(20),constraint primary key(empid));
+create table empbackup(empid int,empName varchar(20),age int check(age between 18 and 50),dept varchar(20),constraint primary key(empid))
+                                                                                                                                 *
+ERROR at line 1:
+ORA-00902: invalid datatype
+
+
+SQL> create table empbackup(empid int,empName varchar(20),age int check(age between 18 and 50),dept varchar(20),constraint pk1 primary key(empid));
+
+Table created.
+
+SQL> create trigger trgempbackup after insert on emp for each row
+  2  begin
+  3  insert into empbackup values(:new.empid,:new.empname,:new.age,:new.deptid)
+  4  end;
+  5  /
+
+Warning: Trigger created with compilation errors.
+
+SQL> show errors;
+Errors for TRIGGER TRGEMPBACKUP:
+
+LINE/COL ERROR
+-------- -----------------------------------------------------------------
+2/1      PL/SQL: SQL Statement ignored
+2/76     PL/SQL: ORA-00933: SQL command not properly ended
+3/4      PLS-00103: Encountered the symbol "end-of-file" when expecting
+         one of the following:
+         ( begin case declare end exception exit for goto if loop mod
+         null pragma raise return select update while with
+         <an identifier> <a double-quoted delimited-identifier>
+         <a bind variable> << continue close current delete fetch lock
+         insert open rollback savepoint set sql execute commit forall
+         merge pipe purge json_exists json_value json_query
+         json_object json_array
+
+LINE/COL ERROR
+-------- -----------------------------------------------------------------
+
+SQL> create or replace trigger trgempbackup after insert on emp for each row
+  2  begin
+  3  insert into empbackup values(:new.empid,:new.empname,:new.age,:new.deptid);
+  4  end;
+  5  /
+
+Trigger created.
+
+SQL> insert into emp values('103','Harsh','47','1');
+
+1 row created.
+
+SQL> select * from empbackup;
+
+     EMPID EMPNAME                     AGE DEPT
+---------- -------------------- ---------- --------------------
+       103 Harsh                        47 1
+
+SQL> desc dept;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEPTID                                    NOT NULL NUMBER(38)
+ DEPTNAME                                           VARCHAR2(20)
+
+SQL> select * from dept;
+
+    DEPTID DEPTNAME
+---------- --------------------
+         1 Sales
+         2 Marketing
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                              NUMBER(38)
+ EMPNAME                                            VARCHAR2(20)
+ AGE                                                NUMBER(38)
+ DEPTID                                             NUMBER(38)
+
+SQL> select * from emp;
+
+     EMPID EMPNAME                     AGE     DEPTID
+---------- -------------------- ---------- ----------
+       103 Harsh                        47          1
+
+SQL> desc empbackup;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(38)
+ EMPNAME                                            VARCHAR2(20)
+ AGE                                                NUMBER(38)
+ DEPT                                               VARCHAR2(20)
+
+SQL> select * from empbackup;
+
+     EMPID EMPNAME                     AGE DEPT
+---------- -------------------- ---------- --------------------
+       103 Harsh                        47 1
+
+SQL>
