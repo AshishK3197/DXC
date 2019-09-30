@@ -1,0 +1,211 @@
+create procedure prcMyFstProc
+  2  as
+  3  begin
+  4  dbms_output.put_line('Hello');
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> exec prcmyfstproc;
+
+PL/SQL procedure successfully completed.
+
+SQL> set server ouput on;
+SP2-0158: unknown SET option "server"
+SQL> set serverouput on;
+SP2-0735: unknown SET option beginning "serveroupu..."
+SQL> set serveroutput on;
+SQL> exec prcmyfstproc;
+Hello
+
+PL/SQL procedure successfully completed.
+
+SQL> create table testPrc(col1 varchar(20));
+
+Table created.
+
+SQL> desc testprc;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ COL1                                               VARCHAR2(20)
+
+SQL> create or replace procedure prcmyfstproc(val varchar2)
+  2  as
+  3  begin
+  4  dbms_output.put_line('Hello'||val);
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> exec prcMyProc('world');
+BEGIN prcMyProc('world'); END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00201: identifier 'PRCMYPROC' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+
+SQL> exec prcMyfstProc('world');
+Helloworld
+
+PL/SQL procedure successfully completed.
+
+SQL> exec prcMyfstProc('world');
+Helloworld
+
+PL/SQL procedure successfully completed.
+
+SQL> create or replace procedure prcmyfstproc(val varchar2)
+  2  as
+  3  begin
+  4  insert into testPrc value(val);
+  5  end;
+  6  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show errors;
+Errors for PROCEDURE PRCMYFSTPROC:
+
+LINE/COL ERROR
+-------- -----------------------------------------------------------------
+4/1      PL/SQL: SQL Statement ignored
+4/31     PL/SQL: ORA-00926: missing VALUES keyword
+SQL> create or replace procedure prcmyfstproc(val varchar2)
+  2  as
+  3  begin
+  4  insert into testPrc values(val);
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> exec prcmyfstproc('world');
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from testprc;
+
+COL1
+--------------------
+world
+
+SQL> create or replace procedure prcmyfstproc(empfname varchar2,empmname varchar2,emplastname varchar2,empage int,empcity varchar2,empdesignation varchar2,empid int,empdob date)
+  2  as
+  3  begin
+  4  insert into employee values('HAri','Prasad','Om','24','Baroda','DataScience manager','110','27-sep-2011');
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> exec prcmyfstproc;
+BEGIN prcmyfstproc; END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7:
+PLS-00306: wrong number or types of arguments in call to 'PRCMYFSTPROC'
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored
+
+
+SQL> create or replace procedure prcmyfstproc(empfname varchar2,empmname varchar2,emplastname varchar2,empage int,empcity varchar2,empdesignation varchar2,empid int,empdob date)
+  2  as
+  3  begin
+  4  insert into employee values(empfname,empmname,emplastname,empage,empcity,empdesignation,empid,empdob);
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> exec prcmyfstproc('HAri','Prasad','Om','24','Baroda','DataScience manager','110','27-sep-2011');
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ashish               Kumar                Singh                        21
+Bokaro               Acount manager       101   30-SEP-19
+
+Amit                 Kumar                Singh                        22
+Bariely              CloudOp manager      102   29-SEP-19
+
+Swetabh              Kumar                Singh                        23
+Brussels             Apps manager         103   28-SEP-19
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Harsh                Kumar                Singh                        24
+Bangladesh           Devops manager       104   27-SEP-19
+
+HAri                 Prasad               Om                           24
+Baroda               DataScience manager  110   27-SEP-11
+
+
+
+
+create proc prcoutdemo(cuurdate date,previousdate out date)
+  2  as
+  3  begin
+  4  previousdate:=cuurdate-10;
+create proc prcoutdemo(cuurdate date,previousdate out date)
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command
+
+
+SQL> create proc prcoutdemo(cuurdate date,previousdate out date)
+  2  as
+  3  begin
+  4  previousdate:=cuurdate-10
+  5
+SQL> create procedure prcoutdemo(curdate date,previousdate out date)
+  2  as
+  3  begin
+  4  previousdate:=curdate-10;
+  5  end;
+  6  /
+
+Procedure created.
+
+SQL> declare
+  2  previousdate date;
+  3  begin
+  4  prcoutdemo(12-sep-2010,previousdate);
+  5  dbms_output.put_line(previousdate);
+  6  end;
+  7  /
+prcoutdemo(12-sep-2010,previousdate);
+              *
+ERROR at line 4:
+ORA-06550: line 4, column 15:
+PLS-00201: identifier 'SEP' must be declared
+ORA-06550: line 4, column 1:
+PL/SQL: Statement ignored
+
+
+SQL> declare
+  2  previousdate date;
+  3  begin
+  4  prcoutdemo('12-sep-2010',previousdate);
+  5  dbms_output.put_line(previousdate);
+  6  end;
+  7  /
+02-SEP-10
+
+PL/SQL procedure successfully completed.
+
+SQL>

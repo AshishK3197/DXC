@@ -1,0 +1,207 @@
+SQL> desc college;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CLGID                                              NUMBER(38)
+ CLGNAME                                            VARCHAR2(10)
+ TEST                                               CHAR(5)
+
+SQL> desc student;
+ERROR:
+ORA-04043: object student does not exist
+
+
+SQL> create table student(rollno int,collgecode int,sname varchar(20));
+
+Table created.
+
+SQL> insert into student values ('101','1','ashish');
+
+1 row created.
+
+SQL> insert into student values ('102','2','vijay');
+
+1 row created.
+
+SQL> insert into student values ('103','1','archer');
+
+1 row created.
+
+SQL> insert into student values ('104','2','mouse');
+
+1 row created.
+
+SQL> insert into student values ('105','1','cat');
+
+1 row created.
+
+SQL> select * from college;
+
+     CLGID CLGNAME    TEST
+---------- ---------- -----
+       223 prachir    56
+       223 prachir1   56
+         1 aa         aa
+       242 SRMIST     100
+       243 ANTRA      97
+
+SQL> delete from collge;
+delete from collge
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> delete from college;
+
+5 rows deleted.
+
+SQL> insert into college values ('1','IIT','56');
+
+1 row created.
+
+SQL> insert into college values ('2','IIm','57');
+
+1 row created.
+
+SQL> insert into college values ('3','JNU','60');
+
+1 row created.
+
+SQL> insert into college values ('1','IIT','87');
+
+1 row created.
+
+SQL> select clgname,sname from student
+  2  join college on college.clgid=student.collgecode;
+
+CLGNAME    SNAME
+---------- --------------------
+IIT        ashish
+IIT        archer
+IIT        cat
+IIm        vijay
+IIm        mouse
+IIT        ashish
+IIT        archer
+IIT        cat
+
+8 rows selected.
+
+SQL> select clgname,sname from student
+  2  full outer college on college.clgid=student.collgecode;
+full outer college on college.clgid=student.collgecode
+           *
+ERROR at line 2:
+ORA-00905: missing keyword
+
+
+SQL> select clgname,sname from student
+  2  full outer join college on college.clgid=student.collgecode;
+
+CLGNAME    SNAME
+---------- --------------------
+IIT        ashish
+IIT        archer
+IIT        cat
+IIm        vijay
+IIm        mouse
+JNU
+IIT        ashish
+IIT        archer
+IIT        cat
+
+9 rows selected.
+
+SQL> select clgname,sname,rollno from student
+  2  full outer join college on college.clgid=student.collgecode;
+
+CLGNAME    SNAME                    ROLLNO
+---------- -------------------- ----------
+IIT        ashish                      101
+IIT        archer                      103
+IIT        cat                         105
+IIm        vijay                       102
+IIm        mouse                       104
+JNU
+IIT        ashish                      101
+IIT        archer                      103
+IIT        cat                         105
+
+9 rows selected.
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> drop college;
+drop college
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop table college;
+
+Table dropped.
+
+SQL> flashback table college to before drop;
+
+Flashback complete.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> desc college;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CLGID                                              NUMBER(38)
+ CLGNAME                                            VARCHAR2(10)
+ TEST                                               CHAR(5)
+
+SQL> select * from college;
+
+     CLGID CLGNAME    TEST
+---------- ---------- -----
+         1 IIT        56
+         2 IIm        57
+         3 JNU        60
+         1 IIT        87
+
+SQL> delete table college;
+delete table college
+       *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> delete from college;
+
+4 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> desc college;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CLGID                                              NUMBER(38)
+ CLGNAME                                            VARCHAR2(10)
+ TEST                                               CHAR(5)
+
+SQL> select * from college;
+
+     CLGID CLGNAME    TEST
+---------- ---------- -----
+         1 IIT        56
+         2 IIm        57
+         3 JNU        60
+         1 IIT        87
+
+SQL> commit;
+
+Commit complete.

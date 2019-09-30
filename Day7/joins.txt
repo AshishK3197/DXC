@@ -1,0 +1,787 @@
+
+SQL> create table brother(
+  2  brother id int,                                                                   3  name varchar(20),
+  4  brother name varchar(20));
+brother id int,
+           *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table brother(
+  2  brotherid int,
+  3  name varchar(20)
+  4  );
+
+Table created.
+
+SQL> alter table add bigbrotherid;
+alter table add bigbrotherid
+            *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> alter table brother add bigbrotherid int;
+
+Table altered.
+
+SQL> desc brother;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BROTHERID                                          NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ BIGBROTHERID                                       NUMBER(38)
+
+SQL> insert into brother values('1','john','');
+
+1 row created.
+
+SQL> insert into brother values('2','keshav','1');
+
+1 row created.
+
+SQL> insert into brother values('3','raju','1');
+
+1 row created.
+
+SQL> insert into brother values('4','cena','1');
+
+1 row created.
+
+SQL> insert into brother values('5','cena','');
+
+1 row created.
+
+SQL> insert into brother values('6','akash','5');
+
+1 row created.
+
+SQL> insert into brother values('7','rakesh','5');
+
+1 row created.
+
+SQL> insert into brother values('8','ramdev','5');
+
+1 row created.
+
+SQL> self e.brother as "brothers",m.brother as "bigbrothers"
+SP2-0734: unknown command beginning "self e.bro..." - rest of line ignored.
+SQL> self e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.brotherid;
+SP2-0734: unknown command beginning "self e.bro..." - rest of line ignored.
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.brotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.brotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.brotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.brotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on m.brotherid=e.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on m.brotherid=e.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join bigbrother m on e.brotherid=m.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join bigbrother m on e.brotherid=m.bigbrotherid
+                                                                              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on m.brotherid=e.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on m.brotherid=e.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on m.brotherid=e.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on m.brotherid=e.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL>
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL>
+SQL>
+SQL> select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brother as "brothers",m.brother as "bigbrothers" from brother e join brother m on e.brotherid=m.bigbrotherid
+                               *
+ERROR at line 1:
+ORA-00904: "M"."BROTHER": invalid identifier
+
+
+SQL>
+SQL> select e.brotherid as "brothers",m.bigbrotherid as "bigbrothers"
+  2  from brother e join brother m
+  3  on e.brotherid=m.bigbrotherid;
+
+  brothers bigbrothers
+---------- -----------
+         1           1
+         1           1
+         1           1
+         5           5
+         5           5
+         5           5
+
+6 rows selected.
+
+SQL> select e.brotherid as "brothers",m.bigbrotherid as "bigbrothers"
+  2  select e.brotherid as "brothers",m.bigbrotherid as "bigbrothers"
+  3  from brother e join brother m
+  4  on m.brotherid=e.bigbrotherid;
+select e.brotherid as "brothers",m.bigbrotherid as "bigbrothers"
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select e.brothername as "brothers",m.bigbrothername as "bigbrothers"
+  2  from brother e join brother m
+  3  on e.brotherid=m.bigbrotherid;
+select e.brothername as "brothers",m.bigbrothername as "bigbrothers"
+                                   *
+ERROR at line 1:
+ORA-00904: "M"."BIGBROTHERNAME": invalid identifier
+
+
+SQL> select e.brothername as "brothers",m.bigbrothername as "bigbrothers"
+  2  from brother e join brother m
+  3  on m.brotherid=e.bigbrotherid;
+select e.brothername as "brothers",m.bigbrothername as "bigbrothers"
+                                   *
+ERROR at line 1:
+ORA-00904: "M"."BIGBROTHERNAME": invalid identifier
+
+
+SQL> desc brother
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BROTHERID                                          NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ BIGBROTHERID                                       NUMBER(38)
+
+SQL> select * from brother;
+
+ BROTHERID NAME                 BIGBROTHERID
+---------- -------------------- ------------
+         1 john
+         2 keshav                          1
+         3 raju                            1
+         4 cena                            1
+         5 cena
+         6 akash                           5
+         7 rakesh                          5
+         8 ramdev                          5
+
+8 rows selected.
+
+SQL> delete from brother where brotherid=5;
+
+1 row deleted.
+
+SQL> select * from brotherid;
+select * from brotherid
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from brother;
+
+ BROTHERID NAME                 BIGBROTHERID
+---------- -------------------- ------------
+         1 john
+         2 keshav                          1
+         3 raju                            1
+         4 cena                            1
+         6 akash                           5
+         7 rakesh                          5
+         8 ramdev                          5
+
+7 rows selected.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from brother;
+
+no rows selected
+
+SQL>
+SQL> insert into brother values('1','john','');
+
+1 row created.
+
+SQL> insert into brother values('2','keshav','1');
+
+1 row created.
+
+SQL> insert into brother values('3','raju','1');
+
+1 row created.
+
+SQL> insert into brother values('4','cena','1');
+
+1 row created.
+
+SQL> insert into brother values('5','big','');
+
+1 row created.
+
+SQL> insert into brother values('6','akash','5');
+
+1 row created.
+
+SQL> insert into brother values('7','rakesh','5');
+
+1 row created.
+
+SQL> insert into brother values('8','ramdev','5');
+
+1 row created.
+
+SQL> select * from brother;
+
+ BROTHERID NAME                 BIGBROTHERID
+---------- -------------------- ------------
+         1 john
+         2 keshav                          1
+         3 raju                            1
+         4 cena                            1
+         5 big
+         6 akash                           5
+         7 rakesh                          5
+         8 ramdev                          5
+
+8 rows selected.
+
+SQL> select e.brothername as "brothers",m.bigbrothername as "bigbrothers"
+  2  from brother e join brother m
+  3  on e.brotherid=m.bigbrotherid;
+select e.brothername as "brothers",m.bigbrothername as "bigbrothers"
+                                   *
+ERROR at line 1:
+ORA-00904: "M"."BIGBROTHERNAME": invalid identifier
+
+
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL>
+SQL> select to_char
+  2  (sysdate,'MM-DD-YYYY HH24:MI:SS')"Current date and time is"
+  3  from dual;
+
+Current date and ti
+-------------------
+09-24-2019 14:01:21
+
+SQL> select to_date(sysdate) from dual;
+
+TO_DATE(S
+---------
+24-SEP-19
+
+SQL> select to_char(sysdate) from dual;
+
+TO_CHAR(SYSDATE)
+------------------
+24-SEP-19
+
+SQL> select to_char
+  2  (sysdate,'DD/MM/YYYY HH24:MI:SS')"Current date and time is"
+  3  from dual;
+
+Current date and ti
+-------------------
+24/09/2019 14:03:36
+
+SQL> select date_add('sysdate',interval 10 day);
+select date_add('sysdate',interval 10 day)
+                                   *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select date_add('sysdate,interval 10 day');
+select date_add('sysdate,interval 10 day')
+                                         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select date_add('09-24-2019',interval 10 day);
+select date_add('09-24-2019',interval 10 day)
+                                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select date_add('2019-09-24',interval 10 day);
+select date_add('2019-09-24',interval 10 day)
+                                      *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> select to_char(sysdate+10) from dual;
+
+TO_CHAR(SYSDATE+10
+------------------
+04-OCT-19
+
+SQL> desc employee
+ERROR:
+ORA-04043: object employee does not exist
+
+
+SQL> create table employee (
+  2  empfname varchar(20);
+empfname varchar(20)
+                   *
+ERROR at line 2:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table employee (
+  2  empfname varchar(20),
+  3  empmname varchar(20),
+  4  emplastname varchar(20),
+  5  empage int check (age between 18 and 50),
+  6  empcity varchar(20) like 'B%',
+  7  empdesignation varchar (20) check (empdesignation like'%manager'),
+  8  empid char(5) primary key,
+  9  empdob date);
+empage int check (age between 18 and 50),
+                                        *
+ERROR at line 5:
+ORA-02438: Column check constraint cannot reference other columns
+
+
+SQL> create table employee (
+  2  empfname varchar(20),
+  3  empmname varchar(20),
+  4  emplastname varchar(20),
+  5  empage int check (empage between 18 and 50),
+  6  empcity varchar(20) check (empcity like 'B%),
+  7  empdesignation varchar (20) check (empdesignation like'%manager'),
+  8  empid char(5) primary key,
+  9  empdob date);
+empdesignation varchar (20) check (empdesignation like'%manager'),
+                                                       *
+ERROR at line 7:
+ORA-00911: invalid character
+
+
+SQL> create table employee (
+  2  empfname varchar(20),
+  3  empmname varchar(20),
+  4  emplastname varchar(20),
+  5  empage int check (empage between 18 and 50),
+  6  empcity varchar(20) check (empcity like 'B%),
+  7  empdesignation varchar (20) check (empdesignation like '%manager'),
+  8  empid char(5) primary key,
+  9  empdob date);
+empdesignation varchar (20) check (empdesignation like '%manager'),
+                                                        *
+ERROR at line 7:
+ORA-00911: invalid character
+
+
+SQL> create table employee (
+  2  empfname varchar(20),
+  3  empmname varchar(20),
+  4  emplastname varchar(20),
+  5  empage int check (empage between 18 and 50),
+  6  empcity varchar(20) check (empcity like 'B%),
+  7  empdesignation varchar(20) check (empdesignation like'%manager'),
+  8  empid char(5) primary key,
+  9  empdob date);
+empdesignation varchar(20) check (empdesignation like'%manager'),
+                                                      *
+ERROR at line 7:
+ORA-00911: invalid character
+
+
+SQL> create table employee (
+  2  empfname varchar(20),
+  3  empmname varchar(20),
+  4  emplastname varchar(20),
+  5  empage int check (empage between 18 and 50),
+  6  empcity varchar(20) check (empcity like 'B%),
+  7  empdesignation varchar(20) check (empdesignation like '%manager'),
+  8  empid char(5) primary key,
+  9  empdob date);
+empdesignation varchar(20) check (empdesignation like '%manager'),
+                                                       *
+ERROR at line 7:
+ORA-00911: invalid character
+
+
+SQL> create table employee (
+  2  empfname varchar(20),
+  3  empmname varchar(20),
+  4  emplastname varchar(20),
+  5  empage int check (empage between 18 and 50),
+  6  empcity varchar(20) check (empcity like 'B%'),
+  7  empdesignation varchar(20) check (empdesignation like '%manager'),
+  8  empid char(5) primary key,
+  9  empdob date);
+
+Table created.
+
+SQL> insert into employee values ('Ashish','Kumar','Singh','21','Bangalore','Acount manager','101','30-09-1997');
+insert into employee values ('Ashish','Kumar','Singh','21','Bangalore','Acount manager','101','30-09-1997')
+                                                                                              *
+ERROR at line 1:
+ORA-01843: not a valid month
+
+
+SQL> insert into employee values ('Ashish','Kumar','Singh','21','Bangalore','Acount manager','101','30-SEP-2019');
+
+1 row created.
+
+SQL> insert into employee values ('Amit','Kumar','Singh','22','Bariely','CloudOp manager','102','29-SEP-2019');
+
+1 row created.
+
+SQL> insert into employee values ('Swetabh','Kumar','Singh','23','Brussels','Apps manager','103','28-SEP-2019');
+
+1 row created.
+
+SQL> insert into employee values ('Harsh','Kumar','Singh','24','Bangladesh','Devops manager','104','27-SEP-2019');
+
+1 row created.
+
+SQL> insert into employee values ('Abhijeet','Kumar','Singh','25','Belgaon','WPM manager','105','26-SEP-2019');
+
+1 row created.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ashish               Kumar                Singh                        21
+Bangalore            Acount manager       101   30-SEP-19
+
+Amit                 Kumar                Singh                        22
+Bariely              CloudOp manager      102   29-SEP-19
+
+Swetabh              Kumar                Singh                        23
+Brussels             Apps manager         103   28-SEP-19
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Harsh                Kumar                Singh                        24
+Bangladesh           Devops manager       104   27-SEP-19
+
+Abhijeet             Kumar                Singh                        25
+Belgaon              WPM manager          105   26-SEP-19
+
+
+SQL> update employee set city = 'Bokaro' where empid=101;
+update employee set city = 'Bokaro' where empid=101
+                    *
+ERROR at line 1:
+ORA-00904: "CITY": invalid identifier
+
+
+SQL> update employee set empcity = 'Bokaro' where empid=101;
+
+1 row updated.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ashish               Kumar                Singh                        21
+Bokaro               Acount manager       101   30-SEP-19
+
+Amit                 Kumar                Singh                        22
+Bariely              CloudOp manager      102   29-SEP-19
+
+Swetabh              Kumar                Singh                        23
+Brussels             Apps manager         103   28-SEP-19
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Harsh                Kumar                Singh                        24
+Bangladesh           Devops manager       104   27-SEP-19
+
+Abhijeet             Kumar                Singh                        25
+Belgaon              WPM manager          105   26-SEP-19
+
+
+SQL> delete from employee where empid=105;
+
+1 row deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from employee;
+
+4 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ashish               Kumar                Singh                        21
+Bokaro               Acount manager       101   30-SEP-19
+
+Amit                 Kumar                Singh                        22
+Bariely              CloudOp manager      102   29-SEP-19
+
+Swetabh              Kumar                Singh                        23
+Brussels             Apps manager         103   28-SEP-19
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Harsh                Kumar                Singh                        24
+Bangladesh           Devops manager       104   27-SEP-19
+
+
+SQL> select empname ,empdob from employee;
+select empname ,empdob from employee
+       *
+ERROR at line 1:
+ORA-00904: "EMPNAME": invalid identifier
+
+
+SQL> select empfame ,emmname,emplastname from employee;
+select empfame ,emmname,emplastname from employee
+                *
+ERROR at line 1:
+ORA-00904: "EMMNAME": invalid identifier
+
+
+SQL> select empfame ,empmname,emplastname from employee;
+select empfame ,empmname,emplastname from employee
+       *
+ERROR at line 1:
+ORA-00904: "EMPFAME": invalid identifier
+
+
+SQL> select empfname ,empmname,emplastname from employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME
+-------------------- -------------------- --------------------
+Ashish               Kumar                Singh
+Amit                 Kumar                Singh
+Swetabh              Kumar                Singh
+Harsh                Kumar                Singh
+
+SQL> select empfname ,empmname,emplastname,empdob from employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME          EMPDOB
+-------------------- -------------------- -------------------- ---------
+Ashish               Kumar                Singh                30-SEP-19
+Amit                 Kumar                Singh                29-SEP-19
+Swetabh              Kumar                Singh                28-SEP-19
+Harsh                Kumar                Singh                27-SEP-19
+
+SQL> select substr(empfname,1,1)||'.'||substr(empmname, 1, 1)||'.'||emplastname from employee;
+
+SUBSTR(EMPFNAME,1,1)||'.'||SUB
+------------------------------
+A.K.Singh
+A.K.Singh
+S.K.Singh
+H.K.Singh
+
+SQL> select substr(empfname,1,1)||'.'||substr(empmname, 1, 1)||'.'||emplastname as "Employee Names",empdob as "DOB" from employee;
+
+Employee Names                 DOB
+------------------------------ ---------
+A.K.Singh                      30-SEP-19
+A.K.Singh                      29-SEP-19
+S.K.Singh                      28-SEP-19
+H.K.Singh                      27-SEP-19
+
+SQL> select substr(empfname,1,1)||'.'||substr(empmname, 1, 1)||''||emplastname as "Employee Names",empdob as "DOB" from employee;
+
+Employee Names                DOB
+----------------------------- ---------
+A.KSingh                      30-SEP-19
+A.KSingh                      29-SEP-19
+S.KSingh                      28-SEP-19
+H.KSingh                      27-SEP-19
+
+SQL> select substr(empfname,1,1)||'.'||substr(empmname, 1, 1)||' '||emplastname as "Employee Names",empdob as "DOB" from employee;
+
+Employee Names                 DOB
+------------------------------ ---------
+A.K Singh                      30-SEP-19
+A.K Singh                      29-SEP-19
+S.K Singh                      28-SEP-19
+H.K Singh                      27-SEP-19
+
+SQL> desc brother;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ BROTHERID                                          NUMBER(38)
+ NAME                                               VARCHAR2(20)
+ BIGBROTHERID                                       NUMBER(38)
+
+SQL> select * from brother;
+
+ BROTHERID NAME                 BIGBROTHERID
+---------- -------------------- ------------
+         1 john
+         2 keshav                          1
+         3 raju                            1
+         4 cena                            1
+         5 big
+         6 akash                           5
+         7 rakesh                          5
+         8 ramdev                          5
+
+8 rows selected.
+
+SQL> select e.brothername as "brothers",m.bigbrothername as "bigbrother"
+  2  from brother e join bigbrother m on e.bigbrotherid=m.brother;
+from brother e join bigbrother m on e.bigbrotherid=m.brother
+                    *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> display date after 10 days from the current date
+SP2-0734: unknown command beginning "display da..." - rest of line ignored.
+SQL> select e.brothername as "brothers",m.bigbrothername as "bigbrother"
+  2  from brother e join bigbrother m on e.brotherid=m.bigbrotherid;
+from brother e join bigbrother m on e.brotherid=m.bigbrotherid
+                    *
+ERROR at line 2:
+ORA-00942: table or view does not exist
+
+
+SQL> select e.brothername as "brothers",m.bigbrothername as "bigbrother"
+  2  from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brothername as "brothers",m.bigbrothername as "bigbrother"
+                                   *
+ERROR at line 1:
+ORA-00904: "M"."BIGBROTHERNAME": invalid identifier
+
+
+SQL> select e.brothername as "brothers",m.name as "bigbrother"
+  2  from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brothername as "brothers",m.name as "bigbrother"
+       *
+ERROR at line 1:
+ORA-00904: "E"."BROTHERNAME": invalid identifier
+
+
+SQL> select e.name as "brothers",m.bigbrothername as "bigbrother"
+  2  from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.name as "brothers",m.bigbrothername as "bigbrother"
+                            *
+ERROR at line 1:
+ORA-00904: "M"."BIGBROTHERNAME": invalid identifier
+
+
+SQL> select e.brothername as "brothers",m.name as "bigbrother"
+  2  from brother e join brother m on e.brotherid=m.bigbrotherid;
+select e.brothername as "brothers",m.name as "bigbrother"
+       *
+ERROR at line 1:
+ORA-00904: "E"."BROTHERNAME": invalid identifier
+
+
+SQL> select e.name as "brothers",m.name as "bigbrother"
+  2  from brother e join brother m on e.brotherid=m.bigbrotherid;
+
+brothers             bigbrother
+-------------------- --------------------
+john                 keshav
+john                 raju
+john                 cena
+big                  akash
+big                  rakesh
+big                  ramdev
+
+6 rows selected.
+
+SQL>
