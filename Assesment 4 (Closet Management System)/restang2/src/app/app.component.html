@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <div class="image">
+
+<app-header></app-header>
+
+<br><br><br>
+    <h1 align="center" style="color:white;">Welcome to Stylicious</h1>
+    <h3 align="center" style="color:white;" class="htags">Your Perfect Destination for Easy Closet Management</h3><br>
+
+
+
+<form class="container">
+  <fieldset>
+    <legend style="text-align: center; color: rgb(255, 255, 255);">PLease Enter The Details To Continue!!!</legend>
+    <div class="form-group">
+      <label for="id" style="color: white">Enter Product Id:</label>
+      <input type="number" name="productid" class="form-control" id="pwd" [(ngModel)]="product.productId">
+    </div><br>
+    <div class="form-group">
+      <label for="id" style="color: white">Enter Product Name:</label>
+      <input type="text" name="productname" class="form-control" id="pwd" [(ngModel)]="product.productName">
+    </div><br>
+    <div class="form-group">
+      <label for="id" style="color: white">Enter Product Size:</label>
+      <input type="number" name="productsize" class="form-control" id="pwd" [(ngModel)]="product.productSize">
+    </div><br>
+    <div class="form-group">
+      <label for="id" style="color: white">Enter Product Color:</label>
+      <input type="text" name="productcolor" class="form-control" id="pwd" [(ngModel)]="product.productColor">
+    </div><br>
+    <div class="form-group">
+      <label for="id" style="color: white">Enter Product Price:</label>
+      <input type="number" name="productprice" class="form-control" id="pwd" [(ngModel)]="product.productPrice">
+    </div><br>
+    <button type="submit" class="btn btn-danger" value="SAVE" (click)="saveProduct()">Submit</button>
+  </fieldset>
+
+</form>
+
+<br><br>
+<form style="text-align: center;">
+  <input type="submit" value=" Update " (click)="updateProduct()" class="btn btn-danger">
+  <input type="submit" value=" Delete " (click)="deleteProduct()" class="btn btn-danger">
+  <input type="submit" value=" Get By ID " (click)="getProd()" class="btn btn-danger">
+  <input type="submit" value=" Get All Products " (click)="getAllProducts()" class="btn btn-danger">
+</form>
+
+
+
+<router-outlet></router-outlet>
+
+
+
+
+</div>
+
+</html>

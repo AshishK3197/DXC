@@ -1,0 +1,13 @@
+.image{
+    height:60em; background-size:cover; width:auto;
+    background-image:url('C:/Users/akumar2075/Desktop/cool-background.png');
+    background-position:100%;
+    background-repeat:no-repeat;
+  }
+
+  .htags {
+	font-size: 32px;
+  font-family:Palatino,'Palatino Linotype, serif';
+  color:rgb(46,105,163);
+}
+
