@@ -1,0 +1,18 @@
+----------------indexing----------------
+
+
+
+for ( i = 1; i <= 1000000; i++) {
+db.dxcstud.insert( {"rno": i ,"name":"john"} )
+}
+
+db.dxcstud.find({"rno":1000,name:"john"}).explain("executionStats")
+
+db.dxcstud.createIndex({"rno":1})
+
+
+db.dxcstud.find({"rno":1000,name:"john"}).explain("executionStats")
+
+db.dxcstud.getIndexes();
+
+db.dxcstud.dropIndexe("rno_1");
