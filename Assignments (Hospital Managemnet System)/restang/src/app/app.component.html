@@ -1,0 +1,22 @@
+<h1> Save YourSelf !!! </h1>
+
+
+<form >
+<br>Hospital Id : <input type="number" name="resturantId" [(ngModel)]="hospital.hospitalId" >
+<br> Hospital Name : <input type="text" name="resturantName" [(ngModel)]="hospital.hospitalName" >
+<br> Hospital Department :<input type="text" name="Department" [(ngModel)]="hospital.hospitalDept" >
+<br>  Hospital Location :<input type="text" name="Location" [(ngModel)]="hospital.hospitalLocation" >
+
+</form>
+
+
+<input type="submit" value="save" class="btn btn-primary" (click)="saveHospital()">
+<input type="submit" value=" Update " (click)="updateHospital()">
+
+<input type="submit" value=" Delete " (click)="deleteHospital()">
+
+
+<input type="submit" value=" Get By ID " (click)="getHosp()">
+
+
+<input type="submit" value=" Get All Resturant " (click)="getHospitals()">
